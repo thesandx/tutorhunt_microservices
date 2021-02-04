@@ -30,8 +30,9 @@ public class UserController {
     private loginservice userDetailsService;
 
 
-    @PostMapping("/studnet_signup")
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+    @PostMapping("/student_signup")
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest)  {
+
 
         String uname=authenticationRequest.getUsername();
         String pwd=authenticationRequest.getPassword();
@@ -65,11 +66,14 @@ public class UserController {
     }
 
 
-    @PostMapping("/studnet_login")
-    public ResponseEntity<?> checkAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+    @PostMapping("/student_login")
+    public ResponseEntity<?> checkAuthenticationToken(@RequestBody JwtRequest authenticationRequest) {
+        System.out.println("login ke under aaya");
 //        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
         String uname=authenticationRequest.getUsername();
         String pwd=authenticationRequest.getPassword();
+
+
 
 
 

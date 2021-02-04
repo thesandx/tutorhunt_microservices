@@ -1,7 +1,7 @@
 package com.iiitb.feign.payloads;
 
 
-public class JwtAuthenticationResponse {
+public class    JwtAuthenticationResponse {
     private String accessToken;
     private String tokenType = "Bearer";
 
