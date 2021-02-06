@@ -1,6 +1,7 @@
 package com.iiitb.tutorhunt.Controller;
 
 import com.iiitb.tutorhunt.Services.loginservice;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,61 +24,64 @@ import java.util.ArrayList;
 @RequestMapping(value = "/api", method = RequestMethod.POST)
 public class UserController {
 
+    private AuthenticationManager authenticationManager;
+
     @Autowired
     private jwtutil jwtTokenUtil;
 
     @Autowired
     private loginservice userDetailsService;
 
+    public UserController(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
 
-    @PostMapping("/student_signup")
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest)  {
+    }
+    private String hashPassword(String plainTextPassword){
+        return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
+    }
 
+    @PostMapping("/signup")
+    public ResponseEntity<String> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 
         String uname=authenticationRequest.getUsername();
         String pwd=authenticationRequest.getPassword();
+        pwd=hashPassword(pwd);
         String email = authenticationRequest.getEmail();
-        System.out.println("email mila hai "+email);
         String name = authenticationRequest.getName();
+        String role=authenticationRequest.getRole();
         //check if exixtes
 
         com.iiitb.tutorhunt.Models.User user  = userDetailsService.findByUsername(uname);
         if(user!=null){
             System.out.println("user already exists");
-            final String token="T";
-            return ResponseEntity.ok(new JwtResponse(token));
+           // final String token="T";
+            return ResponseEntity.ok("not registered");
         }
 
-        //generate new token
-        UserDetails userDetails = new User(uname,pwd,new ArrayList<>());
-        final String token = jwtTokenUtil.generateToken(userDetails);
 
-        com.iiitb.tutorhunt.Models.User student = new com.iiitb.tutorhunt.Models.User(name,uname,pwd,email,token);
+        com.iiitb.tutorhunt.Models.User student = new com.iiitb.tutorhunt.Models.User(name,uname,pwd,email,role);
 
         boolean result = userDetailsService.registerUser(student);
         if(result) {
-            return ResponseEntity.ok(new JwtResponse(token));
+            return ResponseEntity.ok("registered");
         }
         else{
             System.out.println("something went wrong");
-            final String token1="T";
-            return ResponseEntity.ok(new JwtResponse(token1));
+          //  final String token1="T";
+            return ResponseEntity.ok("not registered");
         }
     }
 
 
-    @PostMapping("/student_login")
-    public ResponseEntity<?> checkAuthenticationToken(@RequestBody JwtRequest authenticationRequest) {
-        System.out.println("login ke under aaya");
+    @PostMapping("/signin")
+    public ResponseEntity<?> checkAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 //        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
         String uname=authenticationRequest.getUsername();
         String pwd=authenticationRequest.getPassword();
+        String role=authenticationRequest.getRole();
+        //System.out.println(role);
 
-
-
-
-
-        com.iiitb.tutorhunt.Models.User user = userDetailsService.checkcredentials(uname,pwd);
+        com.iiitb.tutorhunt.Models.User user = userDetailsService.checkcredentials(uname,pwd,role);
 
         if(user!=null){
             System.out.println("Successfull....");
@@ -86,10 +90,10 @@ public class UserController {
             final String token = jwtTokenUtil.generateToken(userDetails);
 
             //save new token in db
-            user.setSession_id(token);
+//            user.setSession_id(token);
             boolean result = userDetailsService.registerUser(user);
             if(result) {
-                return ResponseEntity.ok(new JwtResponse(token,user.getName(),user.getEmail(),"student",user.getUsername()));
+                return ResponseEntity.ok(new JwtResponse(token,user.getName(),user.getEmail(),user.getRole(),user.getUsername()));
             }
             else{
                 System.out.println("FAILURE while updating token");
@@ -100,7 +104,7 @@ public class UserController {
         }
       //  System.out.println(userDetails.getPassword());
         else{
-            System.out.println("FAILURE,incorect password");
+            System.out.println("FAILURE,incorect details");
             final String token="T";
             return ResponseEntity.ok(new JwtResponse(token));
 

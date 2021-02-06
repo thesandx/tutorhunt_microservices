@@ -23,12 +23,13 @@ public class loginservice implements UserDetailsService {
 
     }
 
+
     public boolean registerUser(com.iiitb.tutorhunt.Models.User student){
         try{
-            System.out.print("studnet email is"+student.getEmail());
-            String salt = BCrypt.gensalt();
-            String hashedPass = BCrypt.hashpw(student.getPassword(),salt);
-            //student.setPassword(hashedPass);
+           // System.out.print(student.getSession_id());
+//            String salt = BCrypt.gensalt();
+//            String hashedPass = BCrypt.hashpw(student.getPassword(),salt);
+//            //student.setPassword(hashedPass);
             repo.save(student);
             return true;
         }
@@ -40,16 +41,16 @@ public class loginservice implements UserDetailsService {
 
     }
 
-    public com.iiitb.tutorhunt.Models.User checkcredentials(String username, String password){
+    public com.iiitb.tutorhunt.Models.User checkcredentials(String username, String password,String role){
         com.iiitb.tutorhunt.Models.User user = findByUsername(username);
 
         if(user == null){
             return null;
         }
-//        else if (BCrypt.checkpw(password,user.getPassword())){
-//            return user;
-//        }
-        else if (password.equals(user.getPassword())){
+        else if(user.getRole().equals(role)){
+            return null;
+        }
+        else if(BCrypt.checkpw(password,user.getPassword())){
             return user;
         }
         else{
