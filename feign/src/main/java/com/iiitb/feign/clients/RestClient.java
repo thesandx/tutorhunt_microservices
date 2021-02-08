@@ -2,6 +2,8 @@ package com.iiitb.feign.clients;
 
 
 import com.iiitb.feign.payloads.JwtRequest;
+import com.iiitb.feign.payloads.courserequest;
+import com.iiitb.feign.payloads.tutorrequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +23,11 @@ public interface RestClient {
     @RequestMapping(method = RequestMethod.POST,value ="/api/signin")
     ResponseEntity<?> checkAuthenticationToken(JwtRequest authenticationRequest);
 
+    @RequestMapping(method = RequestMethod.POST,value ="/Course/courses")
+    ResponseEntity<String> CourseRegister(@RequestBody courserequest creq);
+
+    @RequestMapping(method = RequestMethod.POST,value ="/Tutor/application")
+    ResponseEntity<String> TutorRegistration(@RequestBody tutorrequest treq);
 
 
 }

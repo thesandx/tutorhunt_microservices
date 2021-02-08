@@ -1,13 +1,18 @@
 package com.iiitb.tutorhunt.Services;
 
+import com.iiitb.tutorhunt.Models.Course;
 import com.iiitb.tutorhunt.Repository.UserRepository;
+import com.iiitb.tutorhunt.payloads.courserequest;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +50,11 @@ public class loginservice implements UserDetailsService {
         com.iiitb.tutorhunt.Models.User user = findByUsername(username);
 
         if(user == null){
+            System.out.print("Nula");
             return null;
         }
-        else if(user.getRole().equals(role)){
+        else if(!(user.getRole().equals(role))){
+            System.out.print("ROLLA");
             return null;
         }
         else if(BCrypt.checkpw(password,user.getPassword())){
@@ -82,6 +89,5 @@ public class loginservice implements UserDetailsService {
         }
         return us;
     }
-
 
 }

@@ -2,6 +2,8 @@ package com.iiitb.feign.contollers;
 
 import com.iiitb.feign.clients.RestClient;
 import com.iiitb.feign.payloads.JwtRequest;
+import com.iiitb.feign.payloads.courserequest;
+import com.iiitb.feign.payloads.tutorrequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,10 +30,20 @@ public class HomeController {
         return restClient.checkAuthenticationToken(authenticationRequest);
     }
 
+    @PostMapping("/courses")
+    public ResponseEntity<String> courseRegister(@RequestBody courserequest creq){
+        return restClient.CourseRegister(creq);
+    }
+
+    @PostMapping("/tutor")
+    public ResponseEntity<String> tutorRegister(@RequestBody tutorrequest treq){
+        return restClient.TutorRegistration(treq);
+    }
     @GetMapping("/hello")
     public String hello(){
         return restClient.firstPage();
     }
+
 
 
 
