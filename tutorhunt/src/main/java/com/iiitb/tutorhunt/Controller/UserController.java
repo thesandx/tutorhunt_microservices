@@ -52,6 +52,7 @@ public class UserController {
         String email = authenticationRequest.getEmail();
         String name = authenticationRequest.getName();
         String role=authenticationRequest.getRole();
+
         //check if exixtes
 
         com.iiitb.tutorhunt.Models.User user  = userDetailsService.findByUsername(uname);
@@ -82,6 +83,7 @@ public class UserController {
         String uname=authenticationRequest.getUsername();
         String pwd=authenticationRequest.getPassword();
         String role=authenticationRequest.getRole();
+
         //System.out.println(role);
 
         com.iiitb.tutorhunt.Models.User user = userDetailsService.checkcredentials(uname,pwd,role);

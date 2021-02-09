@@ -47,7 +47,7 @@ public class TutorRegController {
             Tutor tutors=new Tutor(name,cid,age,gender,qualification,cost);
             result=treg.TutorRegistration(tutors);
             if(result){
-                return ResponseEntity.ok("Course_Registered")   ;
+                return ResponseEntity.ok("Course_Registered");
             }
             else{
                 return ResponseEntity.ok("Course_not_registered");
