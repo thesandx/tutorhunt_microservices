@@ -2,16 +2,17 @@ package com.iiitb.feign.contollers;
 
 import com.iiitb.feign.clients.RestClient;
 import com.iiitb.feign.payloads.JwtRequest;
+import com.iiitb.feign.payloads.TutorList;
 import com.iiitb.feign.payloads.courserequest;
 import com.iiitb.feign.payloads.tutorrequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@CrossOrigin
 public class HomeController {
 
     final RestClient restClient;
@@ -39,6 +40,18 @@ public class HomeController {
     public ResponseEntity<String> tutorRegister(@RequestBody tutorrequest treq){
         return restClient.TutorRegistration(treq);
     }
+
+    @PostMapping("/tutorlist")
+    public ResponseEntity<List<?>> tutorRegister(@RequestBody TutorList tutor){
+        return restClient.TutorList(tutor);
+    }
+
+    @GetMapping("/allcourses")
+    public List<String> getAllCourses(){
+        return restClient.getAllCourses();
+    }
+
+
     @GetMapping("/hello")
     public String hello(){
         return restClient.firstPage();

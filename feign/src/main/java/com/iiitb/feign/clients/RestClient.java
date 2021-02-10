@@ -2,6 +2,7 @@ package com.iiitb.feign.clients;
 
 
 import com.iiitb.feign.payloads.JwtRequest;
+import com.iiitb.feign.payloads.TutorList;
 import com.iiitb.feign.payloads.courserequest;
 import com.iiitb.feign.payloads.tutorrequest;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -10,12 +11,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 @FeignClient(name = "tutorhunt")
 public interface RestClient {
 
 
     @RequestMapping("/Hello/hello")
     String firstPage();
+
+    @RequestMapping("/Course/getAllCourses")
+    List<String> getAllCourses();
+
 
     @RequestMapping(method = RequestMethod.POST,value = "/api/signup")
     ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest);
@@ -28,6 +35,9 @@ public interface RestClient {
 
     @RequestMapping(method = RequestMethod.POST,value ="/Tutor/application")
     ResponseEntity<String> TutorRegistration(@RequestBody tutorrequest treq);
+
+    @RequestMapping(method = RequestMethod.POST,value ="/Tutor/tutorlist")
+    ResponseEntity<List<?>> TutorList(@RequestBody TutorList tutor);
 
 
 }

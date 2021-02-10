@@ -4,10 +4,14 @@ import com.iiitb.tutorhunt.Models.Course;
 import com.iiitb.tutorhunt.Models.Tutor;
 import com.iiitb.tutorhunt.Services.courseregservice;
 import com.iiitb.tutorhunt.Services.tutorRegservice;
+import com.iiitb.tutorhunt.payloads.TutorList;
 import com.iiitb.tutorhunt.payloads.tutorrequest;
+import com.sun.org.apache.bcel.internal.generic.LCONST;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -59,5 +63,31 @@ public class TutorRegController {
 
 
     }
+
+
+
+    @PostMapping("/tutorlist")
+    public ResponseEntity<List<Tutor>> TutorList(@RequestBody TutorList tutor){
+
+        //find id of course
+        int subjectId=0;
+
+        List<Course> courseList = crs.courseList();
+
+        for(Course c : courseList){
+            if(c.getCoursename().equalsIgnoreCase(tutor.getCourse())){
+                subjectId = c.getCourseid();
+                break;
+            }
+        }
+
+        System.out.println("Subject is "+tutor.getCourse());
+        System.out.print("Course id is "+subjectId);
+
+        return ResponseEntity.ok(treg.findTutorByCourse(subjectId));
+
+
+    }
+
 
 }
