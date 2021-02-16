@@ -3,7 +3,7 @@ package com.iiitb.tutorhunt.Controller;
 import com.iiitb.tutorhunt.Models.Course;
 //import com.iiitb.tutorhunt.Services.courseregservice;
 import com.iiitb.tutorhunt.Services.loginservice;
-import com.iiitb.tutorhunt.payloads.courserequest;
+import com.iiitb.tutorhunt.payloads.*;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +14,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-
-import com.iiitb.tutorhunt.payloads.jwtutil;
-import com.iiitb.tutorhunt.payloads.JwtRequest;
-import com.iiitb.tutorhunt.payloads.JwtResponse;
 
 import java.util.ArrayList;
 
@@ -44,7 +40,7 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<String> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 
         String uname=authenticationRequest.getUsername();
         String pwd=authenticationRequest.getPassword();
@@ -54,12 +50,12 @@ public class UserController {
         String role=authenticationRequest.getRole();
 
         //check if exixtes
-
+        System.out.println(role);
         com.iiitb.tutorhunt.Models.User user  = userDetailsService.findByUsername(uname);
         if(user!=null){
             System.out.println("user already exists");
            // final String token="T";
-            return ResponseEntity.ok("not registered");
+            return ResponseEntity.ok(new tutorresponse("not_registered"));
         }
 
 
@@ -67,12 +63,12 @@ public class UserController {
 
         boolean result = userDetailsService.registerUser(student);
         if(result) {
-            return ResponseEntity.ok("registered");
+            return ResponseEntity.ok(new tutorresponse("registered"));
         }
         else{
             System.out.println("something went wrong");
           //  final String token1="T";
-            return ResponseEntity.ok("not registered");
+            return ResponseEntity.ok(new tutorresponse("not_registered"));
         }
     }
 
@@ -84,7 +80,7 @@ public class UserController {
         String pwd=authenticationRequest.getPassword();
         String role=authenticationRequest.getRole();
 
-        //System.out.println(role);
+
 
         com.iiitb.tutorhunt.Models.User user = userDetailsService.checkcredentials(uname,pwd,role);
 

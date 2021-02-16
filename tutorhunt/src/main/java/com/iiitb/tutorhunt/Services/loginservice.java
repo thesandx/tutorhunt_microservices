@@ -53,7 +53,7 @@ public class loginservice implements UserDetailsService {
             System.out.print("Nula");
             return null;
         }
-        else if((user.getRole().equals(role))){
+        else if(!(user.getRole().equals(role))){
 //            System.out.print(role);
 //            System.out.print(user.getRole());
 //            System.out.print("ROLLA");
