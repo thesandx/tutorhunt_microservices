@@ -2,12 +2,17 @@ package com.iiitb.tutorhunt.Controller;
 
 import com.iiitb.tutorhunt.Models.Course;
 import com.iiitb.tutorhunt.Models.Tutor;
+//import com.iiitb.tutorhunt.Services.courseregservice;
 import com.iiitb.tutorhunt.Services.courseregservice;
 import com.iiitb.tutorhunt.Services.tutorRegservice;
+import com.iiitb.tutorhunt.payloads.tutorlist;
 import com.iiitb.tutorhunt.payloads.tutorrequest;
+import com.iiitb.tutorhunt.payloads.tutorresponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -21,7 +26,7 @@ public class TutorRegController {
     private courseregservice crs;
 
     @PostMapping("/application")
-    public ResponseEntity<String> TutorRegistration(@RequestBody tutorrequest treq){
+    public ResponseEntity<?> TutorRegistration(@RequestBody tutorrequest treq){
 
         String cname=treq.getCourse_name();
         //System.out.println(cname);
@@ -31,31 +36,46 @@ public class TutorRegController {
         //System.out.println(qualification);
         Integer age=treq.getAge();
        // System.out.println(age);
-        Double cost=treq.getCost();
-       // System.out.println(cost);
+        Double fee=treq.getFee();
+       // System.out.println(fee);
         String name=treq.getName();
 
       //  System.out.print("Hello");
         String objective= treq.getObjective();
         System.out.println(objective);
-        Course courses=new Course(cname,objective);
-        boolean result=crs.registerCourse(courses);
+        Integer cid=treg.getcourseId(cname);
+        //  System.out.println(cid);
+        // Course courses=new Course(cname,objective);
+        Tutor tutors=new Tutor(name,cid,age,gender,qualification,fee);
+        boolean result=treg.TutorRegistration(tutors);
         if(result){
-            Integer cid=treg.getcourseId(cname);
-            //  System.out.println(cid);
-            // Course courses=new Course(cname,objective);
-            Tutor tutors=new Tutor(name,cid,age,gender,qualification,cost);
-            result=treg.TutorRegistration(tutors);
-            if(result){
-                return ResponseEntity.ok("Course_Registered");
-            }
-            else{
-                return ResponseEntity.ok("Course_not_registered");
-            }
+            return ResponseEntity.ok(new tutorresponse("Course_Registered"));
         }
         else{
-            return ResponseEntity.ok("Course_not_registered");
+            return ResponseEntity.ok(new tutorresponse("Course_not_registered"));
         }
+
+    }
+
+    @PostMapping("/tutorlist")
+    public ResponseEntity<List<Tutor>> TutorList(@RequestBody tutorlist tutor){
+
+        //find id of course
+        int subjectId=0;
+
+        List<Course> courseList = crs.courseList();
+
+        for(Course c : courseList){
+            if(c.getCoursename().equalsIgnoreCase(tutor.getCourse())){
+                subjectId = c.getCourseid();
+                break;
+            }
+        }
+
+        System.out.println("Subject is "+tutor.getCourse());
+        System.out.print("Course id is "+subjectId);
+
+        return ResponseEntity.ok(treg.findTutorByCourse(subjectId));
 
 
     }

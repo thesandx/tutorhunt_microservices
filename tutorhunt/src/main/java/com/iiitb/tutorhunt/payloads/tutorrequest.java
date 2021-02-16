@@ -20,7 +20,7 @@ public class tutorrequest {
     private String qualification;
 
     @NotBlank
-    private Double cost;
+    private Double fee;
 
     @NotBlank
     private String objective;
@@ -63,12 +63,12 @@ public class tutorrequest {
         this.qualification = qualification;
     }
 
-    public Double getCost() {
-        return cost;
+    public Double getFee() {
+        return fee;
     }
 
-    public void setCost(Double cost) {
-        this.cost = cost;
+    public void setFee(Double fee) {
+        this.fee = fee;
     }
 
     public String getObjective() { return objective; }
@@ -76,13 +76,13 @@ public class tutorrequest {
     public void setObjective(String objective) { this.objective = objective; }
 
 
-    public tutorrequest(@NotBlank String name,@NotBlank String course_name, @NotBlank Integer age, @NotBlank String gender, @NotBlank String qualification, @NotBlank Double cost, @NotBlank String objective) {
+    public tutorrequest(@NotBlank String name,@NotBlank String course_name, @NotBlank Integer age, @NotBlank String gender, @NotBlank String qualification, @NotBlank Double fee, @NotBlank String objective) {
         this.name=name;
         this.course_name = course_name;
         this.age = age;
         this.gender = gender;
         this.qualification = qualification;
-        this.cost = cost;
+        this.fee = fee;
         this.objective=objective;
     }
 

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @CrossOrigin
@@ -31,6 +33,14 @@ public class CourseController {
         else{
             return ResponseEntity.ok("course_not_registered");
         }
+    }
+
+
+    @GetMapping("/getAllCourses")
+    public List<String> getAllCourses(){
+
+        return crs.getAllCourses();
+
     }
 
 }

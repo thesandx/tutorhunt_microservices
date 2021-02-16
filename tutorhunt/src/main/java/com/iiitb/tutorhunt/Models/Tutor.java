@@ -24,8 +24,8 @@ public class Tutor {
     @Column(name="Qualification",nullable = false)
     private String qualification;
 
-    @Column(name = "Cost",nullable= false)
-    private Double cost;
+    @Column(name = "Fee",nullable= false)
+    private Double fee;
 
     @Column(name="Name",nullable = false)
     private String name;
@@ -34,13 +34,13 @@ public class Tutor {
 
     }
 
-    public Tutor(String name,Integer course_id, Integer age, String gender, String qualification, Double cost) {
+    public Tutor(String name,Integer course_id, Integer age, String gender, String qualification, Double fee) {
         this.name=name;
         this.course_id = course_id;
         this.age = age;
         this.gender = gender;
         this.qualification = qualification;
-        this.cost = cost;
+        this.fee = fee;
     }
 
 
@@ -60,7 +60,9 @@ public class Tutor {
 
     public void setTutor_id(Long tutor_id) { this.tutor_id = tutor_id; }
 
-    public void setCost(Double cost) { this.cost = cost; }
+    public Double getFee() { return fee; }
+
+    public void setFee(Double fee) { this.fee = fee; }
 
     public String getName() { return name; }
 
