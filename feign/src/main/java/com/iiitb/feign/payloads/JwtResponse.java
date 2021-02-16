@@ -12,11 +12,13 @@ public class JwtResponse implements Serializable {
     private String role;
     private String username;
 
+
     public JwtResponse(String jwttoken) {
 
         this.jwttoken = jwttoken;
-      //  this.email=email;
+        //  this.email=email;
     }
+
 
     public JwtResponse(String jwttoken, String name, String email, String role, String username) {
         this.jwttoken = jwttoken;
@@ -26,9 +28,7 @@ public class JwtResponse implements Serializable {
         this.username = username;
     }
 
-    public String getToken() {
-        return this.jwttoken;
-    }
+
 
     public String getJwttoken() {
         return jwttoken;

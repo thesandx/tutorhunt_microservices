@@ -18,7 +18,7 @@ public class JwtRequest {
     private String name;
 
     @NotBlank
-    private String role;
+    private String Role;
 
 
 
@@ -50,7 +50,7 @@ public class JwtRequest {
 
     public void setName(String name) { this.name = name; }
 
-    public String getRole() { return role; }
+    public String getRole() { return Role; }
 
-    public void setRole(String role) { this.role = role; }
+    public void setRole(String role) { this.Role = role; }
 }

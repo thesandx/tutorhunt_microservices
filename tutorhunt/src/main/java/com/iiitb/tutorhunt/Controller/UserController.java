@@ -52,13 +52,17 @@ public class UserController {
         String email = authenticationRequest.getEmail();
         String name = authenticationRequest.getName();
         String role=authenticationRequest.getRole();
+        System.out.println(role);
         //check if exixtes
 
         com.iiitb.tutorhunt.Models.User user  = userDetailsService.findByUsername(uname);
         if(user!=null){
             System.out.println("user already exists");
            // final String token="T";
-            return ResponseEntity.ok("not registered");
+            return ResponseEntity.ok("already registered");
+        }
+        else{
+            System.out.println("user account is being created");
         }
 
 
@@ -66,7 +70,9 @@ public class UserController {
 
         boolean result = userDetailsService.registerUser(student);
         if(result) {
+            System.out.println("returning ok");
             return ResponseEntity.ok("registered");
+
         }
         else{
             System.out.println("something went wrong");
@@ -82,7 +88,7 @@ public class UserController {
         String uname=authenticationRequest.getUsername();
         String pwd=authenticationRequest.getPassword();
         String role=authenticationRequest.getRole();
-        //System.out.println(role);
+        System.out.println(role);
 
         com.iiitb.tutorhunt.Models.User user = userDetailsService.checkcredentials(uname,pwd,role);
 

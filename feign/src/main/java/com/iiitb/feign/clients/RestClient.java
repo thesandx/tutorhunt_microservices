@@ -25,7 +25,7 @@ public interface RestClient {
 
 
     @RequestMapping(method = RequestMethod.POST,value = "/api/signup")
-    ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest);
+    ResponseEntity<String> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest);
 
     @RequestMapping(method = RequestMethod.POST,value ="/api/signin")
     ResponseEntity<?> checkAuthenticationToken(JwtRequest authenticationRequest);

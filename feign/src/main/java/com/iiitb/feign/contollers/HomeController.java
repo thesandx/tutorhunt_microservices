@@ -22,12 +22,14 @@ public class HomeController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signup(@RequestBody JwtRequest authenticationRequest){
+    public ResponseEntity<String> signup(@RequestBody JwtRequest authenticationRequest){
+        System.out.println(authenticationRequest.getRole());
         return restClient.createAuthenticationToken(authenticationRequest);
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody JwtRequest authenticationRequest){
+        System.out.println(authenticationRequest.getRole());
         return restClient.checkAuthenticationToken(authenticationRequest);
     }
 

@@ -31,14 +31,17 @@ public class loginservice implements UserDetailsService {
 
     public boolean registerUser(com.iiitb.tutorhunt.Models.User student){
         try{
-           // System.out.print(student.getSession_id());
+
+
 //            String salt = BCrypt.gensalt();
 //            String hashedPass = BCrypt.hashpw(student.getPassword(),salt);
 //            //student.setPassword(hashedPass);
             repo.save(student);
+            System.out.print("registerd user");
             return true;
         }
         catch (Exception e){
+            System.out.print("registering user error aa gya");
             System.out.println(e.getLocalizedMessage());
             return false;
         }
@@ -53,8 +56,10 @@ public class loginservice implements UserDetailsService {
             System.out.print("Nula");
             return null;
         }
-        else if(!(user.getRole().equals(role))){
-            System.out.print("ROLLA");
+        else if(!(user.getRole().equalsIgnoreCase(role))){
+
+            System.out.println("db role is "+user.getRole());
+            System.out.println("paaya role is "+role);
             return null;
         }
         else if(BCrypt.checkpw(password,user.getPassword())){
@@ -78,6 +83,7 @@ public class loginservice implements UserDetailsService {
         }
     }
     public com.iiitb.tutorhunt.Models.User findByUsername(String username) {
+        System.out.println("username searching");
         List<com.iiitb.tutorhunt.Models.User> users = getAll();
         com.iiitb.tutorhunt.Models.User us = null;
         for (com.iiitb.tutorhunt.Models.User s : users) {
