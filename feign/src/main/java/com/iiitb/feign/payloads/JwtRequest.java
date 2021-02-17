@@ -12,11 +12,17 @@ public class JwtRequest {
     private String username;
     private String name;
 
-    public JwtRequest(@NotBlank String email, @NotBlank String password, @NotBlank String username, String name) {
+    @NotBlank
+    private String role;
+
+
+
+    public JwtRequest(@NotBlank String email, @NotBlank String password, @NotBlank String username, String name,String role) {
         this.email = email;
         this.password = password;
         this.username = username;
         this.name = name;
+        this.role = role;
     }
 
     public String getEmail() {
@@ -46,4 +52,10 @@ public class JwtRequest {
     public String getName() { return name; }
 
     public void setName(String name) { this.name = name; }
+
+    public String getRole() { return role;
+    }
+
+    public void setRole(String role) { this.role = role;
+    }
 }
