@@ -15,14 +15,21 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping({"/booking"})
 public class BookingController {
 
     @Autowired
     private BookingServices bookingServices;
 
+    @GetMapping("/hello")
+    public String firstpage() {
+        return "Hello World";
+    }
+
     @PostMapping("/showSlots")
     public List<String> showBooking(@RequestBody BookingRequest bookingRequest){
+
+
+        System.out.println("hit aaya");
 
         //check if same date has any patient
         List<String> avaliableSlots = new ArrayList<>();
