@@ -3,22 +3,22 @@ package com.iiitb.tutorhunt.Models;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Course")
+@Table(name = "Course")
 public class Course {
 
     @Id
-    @Column(name="courseid")
+    @Column(name = "courseid")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer courseid;
 
-   @Column(name="coursename",length = 100, nullable = false)
-   private String coursename;
+    @Column(name = "coursename", length = 100, nullable = false)
+    private String coursename;
 
-    @Column(name="Objective",length = 100, nullable = false)
+    @Column(name = "Objective", length = 100, nullable = false)
     private String objective;
 
 
-    public Course(){
+    public Course() {
 
     }
 

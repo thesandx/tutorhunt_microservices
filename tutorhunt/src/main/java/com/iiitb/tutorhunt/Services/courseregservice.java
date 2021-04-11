@@ -15,12 +15,11 @@ public class courseregservice {
     @Autowired
     private CourseRepository courserepo;
 
-    public boolean registerCourse(Course courses){
-        try{
+    public boolean registerCourse(Course courses) {
+        try {
             courserepo.save(courses);
             return true;
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
             return false;
         }
@@ -28,17 +27,17 @@ public class courseregservice {
 
     }
 
-    public List<Course> courseList(){
+    public List<Course> courseList() {
         return courserepo.findAll();
 
 
     }
 
-    public List<String> getAllCourses(){
+    public List<String> getAllCourses() {
         List<Course> courses = courseList();
         List<String> result = new ArrayList<>();
-        for(Course c : courses){
-            if(c.getCoursename()!=null){
+        for (Course c : courses) {
+            if (c.getCoursename() != null) {
                 result.add(c.getCoursename());
             }
         }

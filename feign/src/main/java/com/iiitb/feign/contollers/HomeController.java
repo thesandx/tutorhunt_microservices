@@ -15,18 +15,20 @@ import java.util.List;
 public class HomeController {
 
     final RestClient restClient;
+
     @Autowired
-    public HomeController(RestClient restClient){
+    public HomeController(RestClient restClient) {
         this.restClient = restClient;
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signup(@RequestBody JwtRequest authenticationRequest){
+    public ResponseEntity<String> signup(@RequestBody JwtRequest authenticationRequest) {
+        System.out.println("signup request and role is " + authenticationRequest.getRole());
         return restClient.createAuthenticationToken(authenticationRequest);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody JwtRequest authenticationRequest){
+    public ResponseEntity<?> login(@RequestBody JwtRequest authenticationRequest) {
         return restClient.checkAuthenticationToken(authenticationRequest);
     }
 
@@ -36,16 +38,17 @@ public class HomeController {
 //    }
 
     @PostMapping("/tutor")
-    public ResponseEntity<String> tutorRegister(@RequestBody tutorrequest treq){
+    public ResponseEntity<String> tutorRegister(@RequestBody tutorrequest treq) {
         return restClient.TutorRegistration(treq);
     }
+
     @GetMapping("/hello")
-    public String hello(){
+    public String hello() {
         return restClient.firstPage();
     }
 
     @PostMapping("/tutorlist")
-    public ResponseEntity<List<?>> tutorRegister(@RequestBody TutorList tutor){
+    public ResponseEntity<List<?>> tutorRegister(@RequestBody TutorList tutor) {
         return restClient.TutorList(tutor);
     }
 

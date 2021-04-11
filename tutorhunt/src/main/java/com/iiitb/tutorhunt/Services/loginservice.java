@@ -23,22 +23,21 @@ public class loginservice implements UserDetailsService {
     @Autowired
     private UserRepository repo;
 
-    public List<com.iiitb.tutorhunt.Models.User> getAll(){
+    public List<com.iiitb.tutorhunt.Models.User> getAll() {
         return repo.findAll();
 
     }
 
 
-    public boolean registerUser(com.iiitb.tutorhunt.Models.User student){
-        try{
-           // System.out.print(student.getSession_id());
+    public boolean registerUser(com.iiitb.tutorhunt.Models.User student) {
+        try {
+            // System.out.print(student.getSession_id());
 //            String salt = BCrypt.gensalt();
 //            String hashedPass = BCrypt.hashpw(student.getPassword(),salt);
 //            //student.setPassword(hashedPass);
             repo.save(student);
             return true;
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
             return false;
         }
@@ -46,39 +45,37 @@ public class loginservice implements UserDetailsService {
 
     }
 
-    public com.iiitb.tutorhunt.Models.User checkcredentials(String username, String password,String role){
+    public com.iiitb.tutorhunt.Models.User checkcredentials(String username, String password, String role) {
         com.iiitb.tutorhunt.Models.User user = findByUsername(username);
 
-        if(user == null){
+        if (user == null) {
             System.out.print("Nula");
             return null;
-        }
-        else if(!(user.getRole().equals(role))){
+        } else if (!(user.getRole().equals(role))) {
 //            System.out.print(role);
 //            System.out.print(user.getRole());
 //            System.out.print("ROLLA");
             return null;
-        }
-        else if(BCrypt.checkpw(password,user.getPassword())){
+        } else if (BCrypt.checkpw(password, user.getPassword())) {
             return user;
-        }
-        else{
+        } else {
             return null;
         }
     }
+
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
-        com.iiitb.tutorhunt.Models.User user =findByUsername(username);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        com.iiitb.tutorhunt.Models.User user = findByUsername(username);
 
-        if(user!=null){
+        if (user != null) {
 
-            return new User(user.getUsername(),user.getPassword(),new ArrayList<>());
-        }
-        else{
-            return new User("","",new ArrayList<>());
+            return new User(user.getUsername(), user.getPassword(), new ArrayList<>());
+        } else {
+            return new User("", "", new ArrayList<>());
             //throw new UsernameNotFoundException("User not found with username: "+ username);
         }
     }
+
     public com.iiitb.tutorhunt.Models.User findByUsername(String username) {
         List<com.iiitb.tutorhunt.Models.User> users = getAll();
         com.iiitb.tutorhunt.Models.User us = null;

@@ -20,39 +20,38 @@ public class tutorRegservice {
     @Autowired
     private CourseRepository crepo;
 
-    public Integer getcourseId(String cname){
+    public Integer getcourseId(String cname) {
         //System.out.print(cname);
-        Course courses=crepo.findCourseByCoursename(cname);
-        Integer id =courses.getCourseid();
+        Course courses = crepo.findCourseByCoursename(cname);
+        Integer id = courses.getCourseid();
         return id;
     }
 
-    public boolean TutorRegistration(Tutor tutors){
-        try{
+    public boolean TutorRegistration(Tutor tutors) {
+        try {
             tutorrepo.save(tutors);
             return true;
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
             return false;
         }
     }
 
-    public List<Tutor> AllTutor(){
+    public List<Tutor> AllTutor() {
 
         return tutorrepo.findAll();
 
     }
 
 
-    public List<Tutor> findTutorByCourse(int courseId){
+    public List<Tutor> findTutorByCourse(int courseId) {
 
         List<Tutor> tutors = AllTutor();
         List<Tutor> result = new ArrayList<>();
 
-        for(Tutor t: tutors){
+        for (Tutor t : tutors) {
 
-            if(t.getCourse_id()==courseId){
+            if (t.getCourse_id() == courseId) {
                 result.add(t);
             }
 

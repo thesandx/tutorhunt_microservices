@@ -42,7 +42,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 //private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
 
-
 //@Autowired
 //
 //private UserDetailsService jwtUserDetailsService;
@@ -53,10 +52,9 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 //private JwtRequestFilter jwtRequestFilter;
 
 
+    @Autowired
 
-@Autowired
-
-public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
 // configure AuthenticationManager so that it knows from where to load
 
@@ -66,43 +64,40 @@ public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception 
 
 //auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
 
-}
+    }
 
 
+    @Bean
 
-@Bean
+    public PasswordEncoder passwordEncoder() {
 
-public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
 
-return new BCryptPasswordEncoder();
-
-}
-
+    }
 
 
-@Bean
+    @Bean
 
-@Override
+    @Override
 
-public AuthenticationManager authenticationManagerBean() throws Exception {
+    public AuthenticationManager authenticationManagerBean() throws Exception {
 
-return super.authenticationManagerBean();
+        return super.authenticationManagerBean();
 
-}
+    }
 
 
+    @Override
 
-@Override
-
-protected void configure(HttpSecurity httpSecurity) throws Exception {
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
 
 // We don't need CSRF for this example
 
-httpSecurity.csrf().disable()
+        httpSecurity.csrf().disable()
 
 // dont authenticate this particular request
 
-      .authorizeRequests().antMatchers("/authenticate").permitAll();
+                .authorizeRequests().antMatchers("/authenticate").permitAll();
 //
 //// all other requests need to be authenticated
 //
@@ -122,6 +117,6 @@ httpSecurity.csrf().disable()
 
 //httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
-}
+    }
 
 }

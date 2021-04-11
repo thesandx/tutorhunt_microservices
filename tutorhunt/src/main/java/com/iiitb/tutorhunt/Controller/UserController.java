@@ -39,39 +39,39 @@ public class UserController {
         this.authenticationManager = authenticationManager;
 
     }
-    private String hashPassword(String plainTextPassword){
+
+    private String hashPassword(String plainTextPassword) {
         return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
     }
 
     @PostMapping("/signup")
     public ResponseEntity<String> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 
-        String uname=authenticationRequest.getUsername();
-        String pwd=authenticationRequest.getPassword();
-        pwd=hashPassword(pwd);
+        String uname = authenticationRequest.getUsername();
+        String pwd = authenticationRequest.getPassword();
+        pwd = hashPassword(pwd);
         String email = authenticationRequest.getEmail();
         String name = authenticationRequest.getName();
-        String role=authenticationRequest.getRole();
+        String role = authenticationRequest.getRole();
 
         //check if exixtes
 
-        com.iiitb.tutorhunt.Models.User user  = userDetailsService.findByUsername(uname);
-        if(user!=null){
+        com.iiitb.tutorhunt.Models.User user = userDetailsService.findByUsername(uname);
+        if (user != null) {
             System.out.println("user already exists");
-           // final String token="T";
+            // final String token="T";
             return ResponseEntity.ok("not registered");
         }
 
 
-        com.iiitb.tutorhunt.Models.User student = new com.iiitb.tutorhunt.Models.User(name,uname,pwd,email,role);
+        com.iiitb.tutorhunt.Models.User student = new com.iiitb.tutorhunt.Models.User(name, uname, pwd, email, role);
 
         boolean result = userDetailsService.registerUser(student);
-        if(result) {
+        if (result) {
             return ResponseEntity.ok("registered");
-        }
-        else{
+        } else {
             System.out.println("something went wrong");
-          //  final String token1="T";
+            //  final String token1="T";
             return ResponseEntity.ok("not registered");
         }
     }
@@ -80,15 +80,15 @@ public class UserController {
     @PostMapping("/signin")
     public ResponseEntity<?> checkAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 //        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
-        String uname=authenticationRequest.getUsername();
-        String pwd=authenticationRequest.getPassword();
-        String role=authenticationRequest.getRole();
+        String uname = authenticationRequest.getUsername();
+        String pwd = authenticationRequest.getPassword();
+        String role = authenticationRequest.getRole();
 
         //System.out.println(role);
 
-        com.iiitb.tutorhunt.Models.User user = userDetailsService.checkcredentials(uname,pwd,role);
+        com.iiitb.tutorhunt.Models.User user = userDetailsService.checkcredentials(uname, pwd, role);
 
-        if(user!=null){
+        if (user != null) {
             System.out.println("Successfull....");
 
             final UserDetails userDetails = userDetailsService.loadUserByUsername(uname);
@@ -97,28 +97,25 @@ public class UserController {
             //save new token in db
 //            user.setSession_id(token);
             boolean result = userDetailsService.registerUser(user);
-            if(result) {
-                return ResponseEntity.ok(new JwtResponse(token,user.getName(),user.getEmail(),user.getRole(),user.getUsername()));
-            }
-            else{
+            if (result) {
+                return ResponseEntity.ok(new JwtResponse(token, user.getName(), user.getEmail(), user.getRole(), user.getUsername()));
+            } else {
                 System.out.println("FAILURE while updating token");
                 return ResponseEntity.ok(new JwtResponse("T"));
             }
             //final User user=userDetailsService.findByUsername(authenticationRequest.getUsername());
 
         }
-      //  System.out.println(userDetails.getPassword());
-        else{
+        //  System.out.println(userDetails.getPassword());
+        else {
             System.out.println("FAILURE,incorect details");
-            final String token="T";
+            final String token = "T";
             return ResponseEntity.ok(new JwtResponse(token));
 
         }
 
 
     }
-
-
 
 
 //    private void authenticate(String username, String password) throws Exception {

@@ -22,20 +22,20 @@ public interface RestClient {
     @RequestMapping("/Course/getAllCourses")
     List<String> getAllCourses();
 
-    @RequestMapping(method = RequestMethod.POST,value = "/api/signup")
-    ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest);
+    @RequestMapping(method = RequestMethod.POST, value = "/api/signup")
+    ResponseEntity<String> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest);
 
-    @RequestMapping(method = RequestMethod.POST,value ="/api/signin")
+    @RequestMapping(method = RequestMethod.POST, value = "/api/signin")
     ResponseEntity<?> checkAuthenticationToken(JwtRequest authenticationRequest);
 
 //    @RequestMapping(method = RequestMethod.POST,value ="/Course/courses")
 //    ResponseEntity<String> CourseRegister(@RequestBody courserequest creq);
 
 
-    @RequestMapping(method = RequestMethod.POST,value ="/Tutor/application")
+    @RequestMapping(method = RequestMethod.POST, value = "/Tutor/application")
     ResponseEntity<String> TutorRegistration(@RequestBody tutorrequest treq);
 
-    @RequestMapping(method = RequestMethod.POST,value ="/Tutor/tutorlist")
+    @RequestMapping(method = RequestMethod.POST, value = "/Tutor/tutorlist")
     ResponseEntity<List<?>> TutorList(@RequestBody TutorList tutor);
 
 

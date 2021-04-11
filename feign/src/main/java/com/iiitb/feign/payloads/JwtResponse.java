@@ -1,4 +1,5 @@
 package com.iiitb.feign.payloads;
+
 import java.io.Serializable;
 
 
@@ -15,7 +16,7 @@ public class JwtResponse implements Serializable {
     public JwtResponse(String jwttoken) {
 
         this.jwttoken = jwttoken;
-      //  this.email=email;
+        //  this.email=email;
     }
 
     public JwtResponse(String jwttoken, String name, String email, String role, String username) {

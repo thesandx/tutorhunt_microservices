@@ -1,4 +1,5 @@
 package com.iiitb.tutorhunt.payloads;
+
 import java.io.Serializable;
 
 
@@ -16,18 +17,17 @@ public class JwtResponse implements Serializable {
     public JwtResponse(String jwttoken) {
 
         this.jwttoken = jwttoken;
-      //  this.email=email;
+        //  this.email=email;
     }
 
 
-public JwtResponse(String jwttoken, String name, String email, String role, String username) {
-    this.jwttoken = jwttoken;
-    this.name = name;
-    this.email = email;
-    this.role = role;
-    this.username = username;
-}
-
+    public JwtResponse(String jwttoken, String name, String email, String role, String username) {
+        this.jwttoken = jwttoken;
+        this.name = name;
+        this.email = email;
+        this.role = role;
+        this.username = username;
+    }
 
 
     public String getJwttoken() {

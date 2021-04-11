@@ -10,30 +10,29 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(	name = "User")
+@Table(name = "User")
 public class User {
     @Id
     @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Name",length = 20, nullable = false)
+    @Column(name = "Name", length = 20, nullable = false)
     private String name;
 
-    @Column(name = "Username",length = 20, nullable = false, unique= true)
+    @Column(name = "Username", length = 20, nullable = false, unique = true)
     private String username;
 
-    @Column(name = "Password",length = 120, nullable = false)
+    @Column(name = "Password", length = 120, nullable = false)
     private String password;
 
 
-    @Column(name = "Email",length = 50, nullable = false, unique= true)
+    @Column(name = "Email", length = 50, nullable = false, unique = true)
     @Email
     private String email;
 
-    @Column(name = "Role",length = 10, nullable = false)
+    @Column(name = "Role", length = 10, nullable = false)
     private String role;
-
 
 
 //    @Column(name = "Session_id")
@@ -48,12 +47,12 @@ public class User {
     public User() {
     }
 
-    public User(String name, String username, String password, @Email String email,String role) {
+    public User(String name, String username, String password, @Email String email, String role) {
         this.name = name;
         this.username = username;
         this.password = password;
         this.email = email;
-        this.role=role;
+        this.role = role;
         //this.session_id = session_id;
     }
 
@@ -81,9 +80,13 @@ public class User {
         this.email = email;
     }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
-    public void setName(String name) { this.name = name; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getPassword() {
         return password;
@@ -93,9 +96,13 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() { return role; }
+    public String getRole() {
+        return role;
+    }
 
-    public void setRole(String role) { this.role = role; }
+    public void setRole(String role) {
+        this.role = role;
+    }
 
 //    public String getSession_id() {
 //        return session_id;

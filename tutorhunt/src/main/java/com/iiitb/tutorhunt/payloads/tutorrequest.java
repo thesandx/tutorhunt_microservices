@@ -26,10 +26,13 @@ public class tutorrequest {
     private String objective;
 
 
+    public String getName() {
+        return name;
+    }
 
-    public String getName() { return name; }
-
-    public void setName(String name) { this.name = name; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getCourse_name() {
         return course_name;
@@ -71,21 +74,24 @@ public class tutorrequest {
         this.fee = fee;
     }
 
-    public String getObjective() { return objective; }
+    public String getObjective() {
+        return objective;
+    }
 
-    public void setObjective(String objective) { this.objective = objective; }
+    public void setObjective(String objective) {
+        this.objective = objective;
+    }
 
 
-    public tutorrequest(@NotBlank String name,@NotBlank String course_name, @NotBlank Integer age, @NotBlank String gender, @NotBlank String qualification, @NotBlank Double fee, @NotBlank String objective) {
-        this.name=name;
+    public tutorrequest(@NotBlank String name, @NotBlank String course_name, @NotBlank Integer age, @NotBlank String gender, @NotBlank String qualification, @NotBlank Double fee, @NotBlank String objective) {
+        this.name = name;
         this.course_name = course_name;
         this.age = age;
         this.gender = gender;
         this.qualification = qualification;
         this.fee = fee;
-        this.objective=objective;
+        this.objective = objective;
     }
-
 
 
 }

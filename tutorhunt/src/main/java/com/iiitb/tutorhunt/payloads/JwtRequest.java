@@ -21,7 +21,6 @@ public class JwtRequest {
     private String role;
 
 
-
     public String getEmail() {
         return Email;
     }
@@ -46,11 +45,19 @@ public class JwtRequest {
         this.username = username;
     }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
-    public void setName(String name) { this.name = name; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public String getRole() { return role; }
+    public String getRole() {
+        return role;
+    }
 
-    public void setRole(String role) { this.role = role; }
+    public void setRole(String role) {
+        this.role = role;
+    }
 }

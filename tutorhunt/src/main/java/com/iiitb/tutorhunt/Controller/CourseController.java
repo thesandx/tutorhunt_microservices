@@ -13,31 +13,30 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = "/Course",method= RequestMethod.POST)
+@RequestMapping(value = "/Course", method = RequestMethod.POST)
 public class CourseController {
 
     @Autowired
     private courseregservice crs;
 
     @PostMapping("/courses")
-    public ResponseEntity<String> CourseRegister(@RequestBody courserequest creq){
+    public ResponseEntity<String> CourseRegister(@RequestBody courserequest creq) {
 
-        String cname=creq.getCoursename();
+        String cname = creq.getCoursename();
         System.out.print("Hello baby");
-        String objective= creq.getObjective();
-        Course courses=new Course(cname,objective);
-        boolean result=crs.registerCourse(courses);
-        if(result){
+        String objective = creq.getObjective();
+        Course courses = new Course(cname, objective);
+        boolean result = crs.registerCourse(courses);
+        if (result) {
             return ResponseEntity.ok("course_registered");
-        }
-        else{
+        } else {
             return ResponseEntity.ok("course_not_registered");
         }
     }
 
 
     @GetMapping("/getAllCourses")
-    public List<String> getAllCourses(){
+    public List<String> getAllCourses() {
 
         return crs.getAllCourses();
 

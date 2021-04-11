@@ -14,6 +14,6 @@ public class tutorresponse {
     }
 
     public void setResponse(String response) {
-        this.response = response  ;
+        this.response = response;
     }
 }
