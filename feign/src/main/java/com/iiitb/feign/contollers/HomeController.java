@@ -1,9 +1,7 @@
 package com.iiitb.feign.contollers;
 
 import com.iiitb.feign.clients.RestClient;
-import com.iiitb.feign.payloads.JwtRequest;
-import com.iiitb.feign.payloads.TutorList;
-import com.iiitb.feign.payloads.tutorrequest;
+import com.iiitb.feign.payloads.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,6 +50,13 @@ public class HomeController {
     @GetMapping("/allcourses")
     public List<String> getAllCourses() {
         return restClient.getAllCourses();
+
+    }
+
+    @PostMapping("/courseobjective")
+    public ResponseEntity<?> getCourseObj(@RequestBody Bookingrequest book) {
+        System.out.println("I am get objective");
+        return restClient.getCourseObj(book);
 
     }
 }

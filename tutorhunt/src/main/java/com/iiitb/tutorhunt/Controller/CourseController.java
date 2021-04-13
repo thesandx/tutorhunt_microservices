@@ -3,7 +3,10 @@ package com.iiitb.tutorhunt.Controller;
 import com.iiitb.tutorhunt.Models.Course;
 import com.iiitb.tutorhunt.Services.courseregservice;
 import com.iiitb.tutorhunt.Services.loginservice;
+import com.iiitb.tutorhunt.payloads.BookingResponse;
+import com.iiitb.tutorhunt.payloads.Bookingrequest;
 import com.iiitb.tutorhunt.payloads.courserequest;
+import com.iiitb.tutorhunt.payloads.tutorresponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +44,13 @@ public class CourseController {
 
         return crs.getAllCourses();
 
+    }
+
+    @PostMapping("/getCourseObjective")
+    public ResponseEntity<BookingResponse> getCourseObj(@RequestBody Bookingrequest book){
+        String name = book.getName();
+        Integer cid=book.getCourseid();
+        return ResponseEntity.ok(new BookingResponse(crs.getCourseObj(name,cid)));
     }
 
 }
