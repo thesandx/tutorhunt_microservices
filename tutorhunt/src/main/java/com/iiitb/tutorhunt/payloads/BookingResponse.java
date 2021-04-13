@@ -14,7 +14,7 @@ public class BookingResponse {
     }
 
     public BookingResponse(List<String> response) {
-        this.response = response;
+       this.response = response;
     }
 }
 
