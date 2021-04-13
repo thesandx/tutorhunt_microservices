@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7d19efa9-c4f5-4b30-924c-60d4a83f371c" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Abhinav1" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1o6sCVpn7xXdrslrJpPunBLqpbh" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/eureka" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7d19efa9-c4f5-4b30-924c-60d4a83f371c" name="Default Changelist" comment="" />
+      <created>1612618247501</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1612618247501</updated>
+      <workItem from="1612618251097" duration="3939000" />
+      <workItem from="1612635189320" duration="133000" />
+      <workItem from="1612640613322" duration="10000" />
+      <workItem from="1612867284830" duration="50000" />
+      <workItem from="1612876071863" duration="278000" />
+      <workItem from="1612948237899" duration="9000" />
+      <workItem from="1613495884569" duration="263000" />
+      <workItem from="1613496409765" duration="728000" />
+      <workItem from="1615045675234" duration="21000" />
+      <workItem from="1615148473561" duration="115000" />
+      <workItem from="1615240156133" duration="50000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="418" y="183" width="1222" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1612620467181">
+      <screen x="0" y="27" width="1920" height="998" />
+    </state>
+    <state x="418" y="183" width="1222" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.998@0.27.1920.998" timestamp="1612620467181" />
+    <state x="691" y="283" key="FileChooserDialogImpl" timestamp="1612635293938">
+      <screen x="0" y="27" width="1920" height="998" />
+    </state>
+    <state x="691" y="283" key="FileChooserDialogImpl/0.27.1920.998@0.27.1920.998" timestamp="1612635293938" />
+    <state x="555" y="259" width="800" height="537" key="Vcs.Push.Dialog.v2" timestamp="1613496047140">
+      <screen x="0" y="27" width="1920" height="998" />
+    </state>
+    <state x="555" y="259" width="800" height="537" key="Vcs.Push.Dialog.v2/0.27.1920.998@0.27.1920.998" timestamp="1613496047140" />
+  </component>
+</project>
