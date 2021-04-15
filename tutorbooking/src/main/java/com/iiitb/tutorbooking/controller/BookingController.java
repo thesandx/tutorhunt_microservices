@@ -1,11 +1,10 @@
 package com.iiitb.tutorbooking.controller;
 
 import com.iiitb.tutorbooking.models.Booking;
-import com.iiitb.tutorbooking.payloads.BookingRequest;
-import com.iiitb.tutorbooking.payloads.bookslotrequest;
-import com.iiitb.tutorbooking.payloads.bookslotresponse;
+import com.iiitb.tutorbooking.payloads.*;
 import com.iiitb.tutorbooking.services.BookingServices;
 import com.iiitb.tutorbooking.services.SlotbookingService;
+import com.iiitb.tutorbooking.services.showstudentservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +26,9 @@ public class BookingController {
 
     @Autowired
     private SlotbookingService slotbooking;
+
+    @Autowired
+    private showstudentservice showstud;
 
     @GetMapping("/hello")
     public String firstpage() {
@@ -89,6 +91,19 @@ public class BookingController {
         else{
             return ResponseEntity.ok(new bookslotresponse("not booked"));
         }
+    }
+
+    @PostMapping("/showstudents")
+    public ResponseEntity<?> showstudents(@RequestBody showstudentrequest ssr){
+
+
+          showstud.getUserBookingInnerJoin(ssr.getTutor_id());
+//        List<Booking> showstuds = new ArrayList<>();
+//        List<Booking> studlist = showstud.ShowStudentList(ssr.getTutor_id());
+//        for(Booking s : studlist){
+//            System.out.println(s.getTime());
+//        }
+        return ResponseEntity.ok(new showstudentresponse("ok"));
     }
 
 

@@ -2,6 +2,7 @@ package com.iiitb.tutorbooking.models;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Booking")
@@ -25,8 +26,12 @@ public class Booking {
     private String time;
 
 
+    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "bookings",targetEntity = User.class)
+    private List<User> users;
+
     public Booking() {
     }
+
 
     public Booking(int student_id, int tutor_id, String date, String time) {
         this.student_id = student_id;
@@ -73,6 +78,14 @@ public class Booking {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
 }

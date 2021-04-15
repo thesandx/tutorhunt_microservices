@@ -4,7 +4,7 @@ import com.iiitb.tutorbooking.models.Booking;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BookingRepository extends JpaRepository<Booking, Integer> {
-
+//    Booking findBookingByTutor_id(int tutor_id);
 }
 
 
