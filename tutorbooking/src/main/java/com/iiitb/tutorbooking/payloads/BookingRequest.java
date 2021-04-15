@@ -2,6 +2,7 @@ package com.iiitb.tutorbooking.payloads;
 
 public class BookingRequest {
 
+
     private int tutor_id;
     private String date;
 

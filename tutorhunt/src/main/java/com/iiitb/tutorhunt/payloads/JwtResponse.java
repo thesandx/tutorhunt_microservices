@@ -11,6 +11,7 @@ public class JwtResponse implements Serializable {
     private String email;
     private String role;
     private String username;
+    private Long studentid;
 
 
     public JwtResponse(String jwttoken) {
@@ -20,12 +21,15 @@ public class JwtResponse implements Serializable {
     }
 
 
-public JwtResponse(String jwttoken, String name, String email, String role, String username) {
+
+
+    public JwtResponse(String jwttoken, String name, String email, String role, String username, Long studentid) {
     this.jwttoken = jwttoken;
     this.name = name;
     this.email = email;
     this.role = role;
     this.username = username;
+    this.studentid=studentid;
 }
 
 
@@ -68,6 +72,14 @@ public JwtResponse(String jwttoken, String name, String email, String role, Stri
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Long getStudentid() {
+        return studentid;
+    }
+
+    public void setStudentid(Long studentid) {
+        this.studentid = studentid;
     }
 }
 

@@ -26,7 +26,6 @@ public class CourseController {
     public ResponseEntity<String> CourseRegister(@RequestBody courserequest creq){
 
         String cname=creq.getCoursename();
-        System.out.print("Hello baby");
         String objective= creq.getObjective();
         Course courses=new Course(cname,objective);
         boolean result=crs.registerCourse(courses);

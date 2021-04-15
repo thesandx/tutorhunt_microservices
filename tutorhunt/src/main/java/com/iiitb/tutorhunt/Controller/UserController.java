@@ -94,7 +94,7 @@ public class UserController {
 //            user.setSession_id(token);
             boolean result = userDetailsService.registerUser(user);
             if(result) {
-                return ResponseEntity.ok(new JwtResponse(token,user.getName(),user.getEmail(),user.getRole(),user.getUsername()));
+                return ResponseEntity.ok(new JwtResponse(token,user.getName(),user.getEmail(),user.getRole(),user.getUsername(),user.getId()));
             }
             else{
                 System.out.println("FAILURE while updating token");

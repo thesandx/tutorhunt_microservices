@@ -1,46 +1,16 @@
-package com.iiitb.tutorbooking.models;
+package com.iiitb.tutorbooking.payloads;
 
-
-import javax.persistence.*;
-
-@Entity
-@Table(name = "Booking")
-public class Booking {
-
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @Column(name = "student_id")
+public class bookslotrequest {
     private int student_id;
-
-    @Column(name = "tutor_id")
     private int tutor_id;
-
-    @Column(name = "date")
     private String date;
-
-    @Column(name = "time")
     private String time;
 
-
-    public Booking() {
-    }
-
-    public Booking(int student_id, int tutor_id, String date, String time) {
+    public bookslotrequest(int student_id, int tutor_id, String date, String time) {
         this.student_id = student_id;
         this.tutor_id = tutor_id;
         this.date = date;
         this.time = time;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getStudent_id() {
@@ -74,5 +44,4 @@ public class Booking {
     public void setTime(String time) {
         this.time = time;
     }
-
 }

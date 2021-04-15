@@ -1,8 +1,13 @@
 package com.iiitb.tutorbooking.controller;
 
+import com.iiitb.tutorbooking.models.Booking;
 import com.iiitb.tutorbooking.payloads.BookingRequest;
+import com.iiitb.tutorbooking.payloads.bookslotrequest;
+import com.iiitb.tutorbooking.payloads.bookslotresponse;
 import com.iiitb.tutorbooking.services.BookingServices;
+import com.iiitb.tutorbooking.services.SlotbookingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.DateFormat;
@@ -20,6 +25,9 @@ public class BookingController {
     @Autowired
     private BookingServices bookingServices;
 
+    @Autowired
+    private SlotbookingService slotbooking;
+
     @GetMapping("/hello")
     public String firstpage() {
         return "Hello World";
@@ -29,17 +37,19 @@ public class BookingController {
     public List<String> showBooking(@RequestBody BookingRequest bookingRequest){
 
 
-        System.out.println("hit aaya");
+       // System.out.println("hit aaya");
 
-        //check if same date has any patient
-        List<String> avaliableSlots = new ArrayList<>();
-
+        //check if same date has any student
+        List<String> availableSlots = new ArrayList<>();
+        System.out.println(bookingRequest.getDate());
+        System.out.println("TutorId "+bookingRequest.getTutor_id());
         List<String> slots = bookingServices.bookedSlots(bookingRequest.getTutor_id(),bookingRequest.getDate());
-
+        //System.out.print(slots.size());
 
 
             try {
-                Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(bookingRequest.getDate());
+
+                Date date1=new SimpleDateFormat("dd-MM-yyyy").parse(bookingRequest.getDate());
                 DateFormat df = new SimpleDateFormat("HH:mm");
                 Calendar cal = Calendar.getInstance();
                 cal.set(Calendar.HOUR_OF_DAY, 10);
@@ -47,9 +57,10 @@ public class BookingController {
                 cal.set(Calendar.SECOND, 0);
                 //int startDate = cal.get(Calendar.DATE);
                 while (cal.get(Calendar.HOUR_OF_DAY) < 18) {
-                    System.out.println(df.format(cal.getTime()));
+
                     if(!slots.contains(df.format(cal.getTime()))){
-                        avaliableSlots.add(df.format(cal.getTime()));
+                        availableSlots.add(df.format(cal.getTime()));
+                        //System.out.println(df.format(cal.getTime()));
                     }
 
                     cal.add(Calendar.MINUTE, 30);
@@ -58,11 +69,27 @@ public class BookingController {
                 e.printStackTrace();
             }
 
-
-
-
-        return avaliableSlots;
+        return availableSlots;
 
     }
+
+    @PostMapping("/bookslot")
+    public ResponseEntity<?> bookslot(@RequestBody bookslotrequest bookslot){
+
+        int tutor_id=bookslot.getTutor_id();
+        int student_id=bookslot.getStudent_id();
+        String date=bookslot.getDate();
+        String time=bookslot.getTime();
+        Booking slot=new Booking(student_id,tutor_id,date,time);
+        boolean result=slotbooking.SlotBooking(slot);
+        if(result){
+            System.out.println("hit came");
+            return ResponseEntity.ok(new bookslotresponse("booked"));
+        }
+        else{
+            return ResponseEntity.ok(new bookslotresponse("not booked"));
+        }
+    }
+
 
 }

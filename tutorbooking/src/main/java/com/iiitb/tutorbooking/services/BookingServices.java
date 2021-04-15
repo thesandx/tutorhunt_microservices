@@ -26,7 +26,9 @@ public class BookingServices {
         List<Booking> allBookings = getAllBooking();
 
         for(Booking booking : allBookings){
+            //System.out.print(tutor_id+"\n");
             if(booking.getTutor_id()==tutor_id){
+
                 if(booking.getDate().equalsIgnoreCase(date)){
                     bookedTimes.add(booking.getTime());
                 }
