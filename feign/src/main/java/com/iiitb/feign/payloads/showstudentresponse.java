@@ -1,6 +1,6 @@
-package com.iiitb.tutorbooking.payloads;
+package com.iiitb.feign.payloads;
 
-import com.iiitb.tutorbooking.DTO.UserBooking;
+import com.iiitb.feign.DTO.UserBooking;
 
 import java.util.List;
 

@@ -35,6 +35,8 @@ public interface RestClient {
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.POST,value="/Course/getCourseObjective")
-    ResponseEntity<?> getCourseObj(@RequestBody Bookingrequest book);
+    ResponseEntity<?> getCourseObj(@RequestBody getobjectiverequest gor);
+
+
 
 }

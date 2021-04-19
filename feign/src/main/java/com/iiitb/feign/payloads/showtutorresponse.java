@@ -1,10 +1,10 @@
-package com.iiitb.tutorbooking.payloads;
+package com.iiitb.feign.payloads;
 
-import com.iiitb.tutorbooking.DTO.UserBooking;
+import com.iiitb.feign.DTO.UserBooking;
 
 import java.util.List;
 
-public class showstudentresponse {
+public class showtutorresponse {
 
     private List<UserBooking> response;
 
@@ -16,9 +16,7 @@ public class showstudentresponse {
         this.response = response;
     }
 
-    public showstudentresponse(List<UserBooking> response) {
+    public showtutorresponse(List<UserBooking> response) {
         this.response = response;
     }
 }
-
-

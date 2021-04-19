@@ -16,4 +16,9 @@ public interface UserRepository extends JpaRepository<User,Long> {
             "b.tutor_id=:tutor_id")
     //List<UserBooking> fetchUserBooking();
     List<UserBooking> fetchUserBooking(@Param("tutor_id") int tutor_id);
+
+    @Query("SELECT new com.iiitb.tutorbooking.DTO.UserBooking(u.name, b.date, b.time) FROM User u ,Booking b where u.id=b.tutor_id and u.role='tutor' and " +
+            "b.student_id=:student_id")
+        //List<UserBooking> fetchUserBooking();
+    List<UserBooking> fetchUserBookingStudent(@Param("student_id") int student_id);
 }

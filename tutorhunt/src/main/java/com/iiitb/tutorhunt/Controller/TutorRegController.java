@@ -39,14 +39,15 @@ public class TutorRegController {
         Double fee=treq.getFee();
        // System.out.println(fee);
         String name=treq.getName();
-
+        Long id=treq.getId();
       //  System.out.print("Hello");
         String objective= treq.getObjective();
         System.out.println(objective);
         Integer cid=treg.getcourseId(cname);
+
         //  System.out.println(cid);
         // Course courses=new Course(cname,objective);
-        Tutor tutors=new Tutor(name,cid,age,gender,qualification,fee);
+        Tutor tutors=new Tutor(id,name,cid,age,gender,qualification,fee);
         boolean result=treg.TutorRegistration(tutors);
         if(result){
             return ResponseEntity.ok(new tutorresponse("Course_Registered"));

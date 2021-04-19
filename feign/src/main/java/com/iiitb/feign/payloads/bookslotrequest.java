@@ -1,6 +1,7 @@
-package com.iiitb.tutorbooking.payloads;
+package com.iiitb.feign.payloads;
 
 public class bookslotrequest {
+
     private int id;
     private int tutor_id;
     private String date;

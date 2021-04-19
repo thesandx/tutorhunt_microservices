@@ -35,7 +35,15 @@ public class showstudentservice {
     public List<UserBooking> getUserBookingInnerJoin(int tutorid) {
         List<UserBooking> list = userrepo.fetchUserBooking(tutorid);
         for(UserBooking l:list){
-            System.out.println(l.getName()+"\n"+l.getDate());
+            System.out.println(l.getName()+"\n"+l.getDate()+"\n"+l.getTime());
+        }
+        return list;
+    }
+
+    public List<UserBooking> getUserBookingStudent(int studentid) {
+        List<UserBooking> list = userrepo.fetchUserBookingStudent(studentid);
+        for(UserBooking l:list){
+            System.out.println(l.getName()+"\n"+l.getDate()+"\n"+l.getTime());
         }
         return list;
     }

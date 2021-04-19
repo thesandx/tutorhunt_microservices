@@ -2,7 +2,7 @@ package com.iiitb.feign.payloads;
 
 import javax.validation.constraints.NotBlank;
 
-public class Bookingrequest {
+public class getobjectiverequest {
     @NotBlank
     private String name;
 
@@ -25,7 +25,7 @@ public class Bookingrequest {
         return courseid;
     }
 
-    public Bookingrequest(@NotBlank String name, @NotBlank Integer courseid) {
+    public getobjectiverequest(@NotBlank String name, @NotBlank Integer courseid) {
         this.name = name;
         this.courseid = courseid;
     }

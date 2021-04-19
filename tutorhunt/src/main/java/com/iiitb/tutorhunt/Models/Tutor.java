@@ -7,9 +7,14 @@ import javax.persistence.*;
 @Table(name="Tutor")
 public class Tutor {
 
+
+
     @Id
-    @Column(name="tutor_id")
+    @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name="tutor_id",nullable=false)
     private Long tutor_id;
 
     @Column(name="course_id",nullable=false)
@@ -34,7 +39,8 @@ public class Tutor {
 
     }
 
-    public Tutor(String name,Integer course_id, Integer age, String gender, String qualification, Double fee) {
+    public Tutor(Long tutor_id,String name,Integer course_id, Integer age, String gender, String qualification, Double fee) {
+        this.tutor_id=tutor_id;
         this.name=name;
         this.course_id = course_id;
         this.age = age;
@@ -43,6 +49,14 @@ public class Tutor {
         this.fee = fee;
     }
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Integer getCourse_id() {
         return course_id;

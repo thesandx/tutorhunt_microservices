@@ -4,7 +4,7 @@ import com.iiitb.tutorbooking.DTO.UserBooking;
 
 import java.util.List;
 
-public class showstudentresponse {
+public class showtutorresponse {
 
     private List<UserBooking> response;
 
@@ -16,9 +16,7 @@ public class showstudentresponse {
         this.response = response;
     }
 
-    public showstudentresponse(List<UserBooking> response) {
+    public showtutorresponse(List<UserBooking> response) {
         this.response = response;
     }
 }
-
-

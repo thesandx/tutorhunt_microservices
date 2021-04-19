@@ -1,5 +1,6 @@
 package com.iiitb.tutorbooking.controller;
 
+import com.iiitb.tutorbooking.DTO.UserBooking;
 import com.iiitb.tutorbooking.models.Booking;
 import com.iiitb.tutorbooking.payloads.*;
 import com.iiitb.tutorbooking.services.BookingServices;
@@ -97,14 +98,22 @@ public class BookingController {
     public ResponseEntity<?> showstudents(@RequestBody showstudentrequest ssr){
 
 
-          showstud.getUserBookingInnerJoin(ssr.getTutor_id());
+          List<UserBooking> result=showstud.getUserBookingInnerJoin(ssr.getTutor_id());
 //        List<Booking> showstuds = new ArrayList<>();
 //        List<Booking> studlist = showstud.ShowStudentList(ssr.getTutor_id());
 //        for(Booking s : studlist){
 //            System.out.println(s.getTime());
 //        }
-        return ResponseEntity.ok(new showstudentresponse("ok"));
+        return ResponseEntity.ok(new showstudentresponse(result));
     }
 
+    @PostMapping("/showSchedule")
+    public ResponseEntity<?> showschedule(@RequestBody showtutorrequest str){
+
+
+        List<UserBooking> result=showstud.getUserBookingStudent(str.getStudent_id());
+//
+        return ResponseEntity.ok(new showtutorresponse(result));
+    }
 
 }
