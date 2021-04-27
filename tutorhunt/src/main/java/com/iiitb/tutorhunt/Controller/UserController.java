@@ -1,21 +1,19 @@
 package com.iiitb.tutorhunt.Controller;
 
-import com.iiitb.tutorhunt.Models.Course;
-//import com.iiitb.tutorhunt.Services.courseregservice;
 import com.iiitb.tutorhunt.Services.loginservice;
-import com.iiitb.tutorhunt.payloads.*;
-import org.mindrot.jbcrypt.BCrypt;
+import com.iiitb.tutorhunt.payloads.JwtRequest;
+import com.iiitb.tutorhunt.payloads.JwtResponse;
+import com.iiitb.tutorhunt.payloads.jwtutil;
+import com.iiitb.tutorhunt.payloads.tutorresponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.DisabledException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+//import com.iiitb.tutorhunt.Services.courseregservice;
+//import org.mindrot.jbcrypt.BCrypt;
 
 
 @RestController
