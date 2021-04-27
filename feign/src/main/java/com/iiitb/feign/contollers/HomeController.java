@@ -1,5 +1,6 @@
 package com.iiitb.feign.contollers;
 
+import com.iiitb.feign.RabbitMQSender;
 import com.iiitb.feign.clients.BookingClient;
 import com.iiitb.feign.clients.RestClient;
 import com.iiitb.feign.payloads.*;
@@ -22,10 +23,17 @@ public class HomeController {
         this.bookingclient = bookingclient;
     }
 
+    @Autowired
+    RabbitMQSender rabbitMQSender;
+
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signup(@RequestBody JwtRequest authenticationRequest) {
-        return restClient.createAuthenticationToken(authenticationRequest);
+    public void signup(@RequestBody JwtRequest authenticationRequest) {
+        System.out.println("\n\n\n\n\n\nMessage trying to send .send call kr rhe\n\n\n\n\n\n");
+        rabbitMQSender.send(authenticationRequest);
+
+        System.out.println("\n\n\n\n\n\nMessage sent to the RabbitMQ Tutorhunt Successfully\n\n\n\n\n\n");
+       // return restClient.createAuthenticationToken(authenticationRequest);
     }
 
     @PostMapping("/login")
@@ -40,6 +48,7 @@ public class HomeController {
 
     @PostMapping("/tutor")
     public ResponseEntity<String> tutorRegister(@RequestBody tutorrequest treq) {
+
         return restClient.TutorRegistration(treq);
     }
 
