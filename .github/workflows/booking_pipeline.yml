@@ -53,7 +53,7 @@ jobs:
 
 
 
-  build-and-push-to-dockerhub-eureka:
+  build-and-push-to-dockerhub-booking:
     needs: [docker-login]
     runs-on: ubuntu-latest
     steps:
@@ -83,7 +83,7 @@ jobs:
         run: echo ${{ steps.docker_build.outputs.digest }}
 
 
-  Pull-from-dockerhub-eureka:
+  Pull-from-dockerhub-booking:
     needs: [build-and-push-to-dockerhub-eureka]
     runs-on: ubuntu-latest
     steps:
