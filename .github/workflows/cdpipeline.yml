@@ -51,7 +51,7 @@ jobs:
 
 
 
-  build-and-push-to-dockerhub_eureka:
+  build-and-push-to-dockerhub-eureka:
     needs: [docker-login]
     runs-on: ubuntu-latest
     steps:
