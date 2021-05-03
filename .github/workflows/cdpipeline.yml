@@ -74,8 +74,8 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          context: ./
-          file: ./eureka/Dockerfile
+          context: ./eureka
+          file: .Dockerfile
           push: true
           tags: ${{secrets.DOCKER_HUB_USERNAME }}/tutor-eureka-actions:latest
 
