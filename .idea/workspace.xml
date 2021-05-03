@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d19efa9-c4f5-4b30-924c-60d4a83f371c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/cdpipeline.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/cdpipeline.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +64,7 @@
       <workItem from="1615045675234" duration="21000" />
       <workItem from="1615148473561" duration="115000" />
       <workItem from="1615240156133" duration="50000" />
-      <workItem from="1620026303368" duration="776000" />
+      <workItem from="1620026303368" duration="1252000" />
     </task>
     <servers />
   </component>
