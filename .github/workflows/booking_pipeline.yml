@@ -84,7 +84,7 @@ jobs:
 
 
   Pull-from-dockerhub-booking:
-    needs: [build-and-push-to-dockerhub-eureka]
+    needs: [build-and-push-to-dockerhub-booking]
     runs-on: ubuntu-latest
     steps:
       - name: Login to Docker Hub
