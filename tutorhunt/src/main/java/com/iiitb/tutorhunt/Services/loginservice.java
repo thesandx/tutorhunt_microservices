@@ -54,9 +54,7 @@ public class loginservice implements UserDetailsService {
             return null;
         }
         else if(!(user.getRole().equals(role))){
-//            System.out.print(role);
-//            System.out.print(user.getRole());
-//            System.out.print("ROLLA");
+
             return null;
         }
         else if(BCrypt.checkpw(password,user.getPassword())){

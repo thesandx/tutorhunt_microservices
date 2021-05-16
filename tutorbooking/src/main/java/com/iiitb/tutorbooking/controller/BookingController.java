@@ -40,7 +40,7 @@ public class BookingController {
     public List<String> showBooking(@RequestBody BookingRequest bookingRequest){
 
 
-       // System.out.println("hit aaya");
+
 
         //check if same date has any student
         List<String> availableSlots = new ArrayList<>();

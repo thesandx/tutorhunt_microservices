@@ -1,10 +1,13 @@
 package com.iiitb.tutorhunt;
 
 import com.iiitb.tutorhunt.Controller.CourseController;
+import com.iiitb.tutorhunt.Controller.TutorRegController;
 import com.iiitb.tutorhunt.Models.Course;
+import com.iiitb.tutorhunt.Models.Tutor;
 import com.iiitb.tutorhunt.Services.courseregservice;
 import com.iiitb.tutorhunt.Services.tutorRegservice;
 import com.iiitb.tutorhunt.payloads.courserequest;
+import com.iiitb.tutorhunt.payloads.tutorrequest;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -35,7 +38,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = CourseController.class)
+@WebMvcTest(value = {CourseController.class, TutorRegController.class})
 class TutorhuntApplicationTests {
 
     @Autowired
@@ -48,7 +51,6 @@ class TutorhuntApplicationTests {
     @Before()
     public void setup()
     {
-        //Init MockMvc Object and build
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
     @MockBean
@@ -81,7 +83,7 @@ class TutorhuntApplicationTests {
     @Test
     @WithMockUser(username="admin",roles="ADMIN")
     public void registerCourse() throws Exception {
-        //when(courseregservice.registerCourse(Mockito.any(Course.class))).thenReturn(res);
+        when(courseregservice.registerCourse(Mockito.any(Course.class))).thenReturn(res);
         mockMvc.perform( MockMvcRequestBuilders
                 .post("/Course/courses")
                 .content(asJsonString(course))
@@ -90,6 +92,23 @@ class TutorhuntApplicationTests {
                 .with(csrf()))
                 .andExpect(status().isOk());
     }
+
+    tutorrequest tutor = new tutorrequest("Abhinav","AngularJs",24,"Male","BTech",500.0,"Introduction to Intermediate course on Angular framework", 7L);
+    boolean res2;
+    @Test
+    @WithMockUser(username="admin",roles="ADMIN")
+    public void TutorRegistration() throws Exception {
+        when(tutorservice.TutorRegistration(Mockito.any(Tutor.class))).thenReturn(res2);
+        mockMvc.perform( MockMvcRequestBuilders
+                .post("/Tutor/application")
+                .content(asJsonString(tutor))
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .with(csrf()))
+                .andExpect(status().isOk());
+    }
+
+
 
 
 }
