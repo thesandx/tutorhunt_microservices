@@ -59,7 +59,7 @@ public class CourseController {
     public ResponseEntity<?> UpdateTutor(@RequestBody updaterequest ureq) {
 
 
-          //  String cname = treq.getCourse_name();
+            String coursename = ureq.getCoursename();
             //System.out.println(cname);
             Long tutorid= ureq.getTutorid();
             String gender = ureq.getGender();
@@ -74,7 +74,8 @@ public class CourseController {
             //  System.out.print("Hello");
            // String objective = treq.getObjective();
             //System.out.println(objective);
-            boolean result = sus.UpdateTutor(age,gender,qualification,fee,name,tutorid);
+            int courseid= sus.getcourseId(coursename);
+            boolean result = sus.UpdateTutor(age,gender,qualification,fee,name,tutorid,courseid);
             if(result){
                 return ResponseEntity.ok(new tutorresponse("Updated"));
             }

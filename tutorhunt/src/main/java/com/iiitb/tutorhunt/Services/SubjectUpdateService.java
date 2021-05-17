@@ -19,11 +19,10 @@ public class SubjectUpdateService {
     @Autowired
     private CourseRepository courserepo;
 
-    public List<String> getcourseName(Long tutorid){
+    public int getcourseId(String coursename){
 
-        Tutor tutors=trepo.findTutorByTutorid(tutorid);
-        Integer id =tutors.getCourse_id();
-        List<String> res=findCourseByTutor(id);
+        Course crs= courserepo.findCourseByCoursename(coursename);
+        int res=crs.getCourseid();
         return res;
     }
 
@@ -48,8 +47,8 @@ public class SubjectUpdateService {
     }
 
     @Transactional
-    public boolean UpdateTutor(int age,String gender,String qualification,double fee,String name,Long tutorid){
-        int result = trepo.fetchUpdatedTutor(age, gender, qualification, fee, name, tutorid);
+    public boolean UpdateTutor(int age,String gender,String qualification,double fee,String name,Long tutorid,int courseid){
+        int result = trepo.fetchUpdatedTutor(age, gender, qualification, fee, name, tutorid, courseid);
         if(result >= 1){
             return true;
         }

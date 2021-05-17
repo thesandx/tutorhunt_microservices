@@ -6,7 +6,8 @@ public class updaterequest {
     @NotBlank
     private String name;
 
-
+    @NotBlank
+    private String coursename;
 
     @NotBlank
     private Long tutorid;
@@ -71,12 +72,21 @@ public class updaterequest {
         this.fee = fee;
     }
 
-    public updaterequest(String name, Long tutorid, Integer age, String gender, String qualification, Double fee) {
+    public String getCoursename() {
+        return coursename;
+    }
+
+    public void setCoursename(String coursename) {
+        this.coursename = coursename;
+    }
+
+    public updaterequest(String name, Long tutorid, Integer age, String gender, String qualification, Double fee,String coursename) {
         this.name = name;
         this.tutorid = tutorid;
         this.age = age;
         this.gender = gender;
         this.qualification = qualification;
         this.fee = fee;
+        this.coursename=coursename;
     }
 }
