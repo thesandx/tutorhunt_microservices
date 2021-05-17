@@ -31,8 +31,9 @@ jobs:
         run: mvn compile
   
   testing:
+    needs: [compile]
     runs-on: ubuntu-latest
-    name: Running Java ${{ matrix.java }} compile
+    name: Running Java ${{ matrix.java }} Test
     steps:
 
       - uses: actions/checkout@v2
@@ -46,7 +47,7 @@ jobs:
 
   docker-login:
     # The type of runner that the job will run on
-    needs: [compile]
+    needs: [testing]
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
