@@ -83,7 +83,7 @@ jobs:
         run: echo ${{ steps.docker_build.outputs.digest }}
 
 
-  Pull-from-dockerhub-feign:
+  Pull-from-dockerhub-and-run-feign:
     needs: [build-and-push-to-dockerhub-feign]
     runs-on: ubuntu-latest
     steps:
@@ -95,4 +95,7 @@ jobs:
 
       - name: Image Pull
         run: docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/tutorhunt-feign:latest
-
+      - name: Show Image
+        run: dcker image ls
+      - name: Docker run
+        run: docker run -itd ${{ secrets.DOCKER_HUB_USERNAME }}/tutorhunt-tutorbooking:latest
