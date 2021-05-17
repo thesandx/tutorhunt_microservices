@@ -98,5 +98,5 @@ jobs:
       - name: Show Image
         run: docker image ls
       - name: Docker Run
-        run: docker run -it ${{ secrets.DOCKER_HUB_USERNAME }}/tutor-eureka-actions:latest
+        run: docker run -itd ${{ secrets.DOCKER_HUB_USERNAME }}/tutor-eureka-actions:latest
 
