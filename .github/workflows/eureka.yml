@@ -83,7 +83,7 @@ jobs:
         run: echo ${{ steps.docker_build.outputs.digest }}
 
 
-  Pull-from-dockerhub-eureka:
+  Pull-from-dockerhub-and run-eureka:
     needs: [build-and-push-to-dockerhub-eureka]
     runs-on: ubuntu-latest
     steps:
