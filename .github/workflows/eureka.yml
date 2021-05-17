@@ -95,4 +95,8 @@ jobs:
 
       - name: Image Pull
         run: docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/tutor-eureka-actions:latest
+      - name: Show Image
+        run: docker image ls
+      - name: Docker Run
+        run: docker run -it ${{ secrets.DOCKER_HUB_USERNAME }}/tutor-eureka-actions:latest
 
