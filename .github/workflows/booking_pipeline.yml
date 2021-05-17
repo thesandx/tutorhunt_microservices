@@ -83,7 +83,7 @@ jobs:
         run: echo ${{ steps.docker_build.outputs.digest }}
 
 
-  Pull-from-dockerhub-and run-booking:
+  Pull-from-dockerhub-and-run-booking:
     needs: [build-and-push-to-dockerhub-booking]
     runs-on: ubuntu-latest
     steps:
