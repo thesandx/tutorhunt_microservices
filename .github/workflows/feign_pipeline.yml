@@ -96,6 +96,6 @@ jobs:
       - name: Image Pull
         run: docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/tutorhunt-feign:latest
       - name: Show Image
-        run: dcker image ls
+        run: docker image ls
       - name: Docker run
         run: docker run -itd ${{ secrets.DOCKER_HUB_USERNAME }}/tutorhunt-tutorbooking:latest
