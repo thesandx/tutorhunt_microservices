@@ -16,6 +16,7 @@ COPY pom.xml .
 # the pom.xml file has changed.
 RUN ./mvnw dependency:go-offline -B
 
+
 # Copy the project source
 COPY src src
 
