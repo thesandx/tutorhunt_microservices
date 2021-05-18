@@ -6,6 +6,7 @@ import com.iiitb.feign.payloads.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.iiitb.feign.RabbitMQSender;
 
 import java.util.List;
 
@@ -22,6 +23,9 @@ public class HomeController {
         this.bookingclient = bookingclient;
     }
 
+    @Autowired
+    RabbitMQSender rabbitMQSender;
+
 
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody JwtRequest authenticationRequest) {
@@ -30,6 +34,10 @@ public class HomeController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody JwtRequest authenticationRequest) {
+        System.out.println("\n\n\n\n\n\nMessage trying to send .send call kr rhe\n\n\n\n\n\n");
+        rabbitMQSender.send(authenticationRequest);
+
+        System.out.println("\n\n\n\n\n\nMessage sent to the RabbitMQ Tutorhunt Successfully\n\n\n\n\n\n");
         return restClient.checkAuthenticationToken(authenticationRequest);
     }
 
