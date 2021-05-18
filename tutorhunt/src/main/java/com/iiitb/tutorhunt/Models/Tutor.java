@@ -14,8 +14,8 @@ public class Tutor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="tutor_id",nullable=false)
-    private Long tutor_id;
+    @Column(name="tutorid",nullable=false)
+    private Long tutorid;
 
     @Column(name="course_id",nullable=false)
     private Integer course_id;
@@ -39,8 +39,8 @@ public class Tutor {
 
     }
 
-    public Tutor(Long tutor_id,String name,Integer course_id, Integer age, String gender, String qualification, Double fee) {
-        this.tutor_id=tutor_id;
+    public Tutor(Long tutorid,String name,Integer course_id, Integer age, String gender, String qualification, Double fee) {
+        this.tutorid=tutorid;
         this.name=name;
         this.course_id = course_id;
         this.age = age;
@@ -70,9 +70,9 @@ public class Tutor {
         return age;
     }
 
-    public Long getTutor_id() { return tutor_id; }
+    public Long getTutor_id() { return tutorid; }
 
-    public void setTutor_id(Long tutor_id) { this.tutor_id = tutor_id; }
+    public void setTutorid(Long tutorid) { this.tutorid = tutorid; }
 
     public Double getFee() { return fee; }
 
