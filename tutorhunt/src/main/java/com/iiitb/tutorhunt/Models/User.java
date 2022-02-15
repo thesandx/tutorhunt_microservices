@@ -17,22 +17,27 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "Name")
+    @Column(name = "Name",length = 20, nullable = false)
     private String name;
 
-    @Column(name = "Username")
+    @Column(name = "Username",length = 20, nullable = false, unique= true)
     private String username;
 
-    @Column(name = "Password")
+    @Column(name = "Password",length = 120, nullable = false)
     private String password;
 
 
-    @Column(name = "Email")
+    @Column(name = "Email",length = 50, nullable = false, unique= true)
+    @Email
     private String email;
 
+    @Column(name = "Role",length = 10, nullable = false)
+    private String role;
 
-    @Column(name = "Session_id")
-    private String session_id;
+
+
+//    @Column(name = "Session_id")
+//    private String session_id;
 
 //    @ManyToMany(fetch = FetchType.LAZY)
 //    @JoinTable(	name = "user_roles",
@@ -43,12 +48,13 @@ public class User {
     public User() {
     }
 
-    public User(String name, String username, String password,String email, String session_id) {
+    public User(String name, String username, String password, @Email String email,String role) {
         this.name = name;
         this.username = username;
         this.password = password;
         this.email = email;
-        this.session_id = session_id;
+        this.role=role;
+        //this.session_id = session_id;
     }
 
     public Long getId() {
@@ -87,11 +93,15 @@ public class User {
         this.password = password;
     }
 
-    public String getSession_id() {
-        return session_id;
-    }
+    public String getRole() { return role; }
 
-    public void setSession_id(String session_id) {
-        this.session_id = session_id;
-    }
+    public void setRole(String role) { this.role = role; }
+
+//    public String getSession_id() {
+//        return session_id;
+//    }
+//
+//    public void setSession_id(String session_id) {
+//        this.session_id = session_id;
+//    }
 }

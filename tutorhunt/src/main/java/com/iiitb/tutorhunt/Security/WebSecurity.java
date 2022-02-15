@@ -70,20 +70,17 @@ public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception 
 
 
 
+
+
+
 @Bean
-
 public PasswordEncoder passwordEncoder() {
-
 return new BCryptPasswordEncoder();
 
 }
 
-
-
 @Bean
-
 @Override
-
 public AuthenticationManager authenticationManagerBean() throws Exception {
 
 return super.authenticationManagerBean();

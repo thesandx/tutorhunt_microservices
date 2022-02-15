@@ -1,13 +1,18 @@
 package com.iiitb.tutorhunt.Services;
 
+import com.iiitb.tutorhunt.Models.Course;
 import com.iiitb.tutorhunt.Repository.UserRepository;
+import com.iiitb.tutorhunt.payloads.courserequest;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,12 +28,13 @@ public class loginservice implements UserDetailsService {
 
     }
 
+
     public boolean registerUser(com.iiitb.tutorhunt.Models.User student){
         try{
-            System.out.print("studnet email is"+student.getEmail());
-            String salt = BCrypt.gensalt();
-            String hashedPass = BCrypt.hashpw(student.getPassword(),salt);
-            //student.setPassword(hashedPass);
+           // System.out.print(student.getSession_id());
+//            String salt = BCrypt.gensalt();
+//            String hashedPass = BCrypt.hashpw(student.getPassword(),salt);
+//            //student.setPassword(hashedPass);
             repo.save(student);
             return true;
         }
@@ -40,16 +46,18 @@ public class loginservice implements UserDetailsService {
 
     }
 
-    public com.iiitb.tutorhunt.Models.User checkcredentials(String username, String password){
+    public com.iiitb.tutorhunt.Models.User checkcredentials(String username, String password,String role){
         com.iiitb.tutorhunt.Models.User user = findByUsername(username);
 
         if(user == null){
+            System.out.print("Nula");
             return null;
         }
-//        else if (BCrypt.checkpw(password,user.getPassword())){
-//            return user;
-//        }
-        else if (password.equals(user.getPassword())){
+        else if(!(user.getRole().equals(role))){
+
+            return null;
+        }
+        else if(BCrypt.checkpw(password,user.getPassword())){
             return user;
         }
         else{
@@ -81,6 +89,5 @@ public class loginservice implements UserDetailsService {
         }
         return us;
     }
-
 
 }

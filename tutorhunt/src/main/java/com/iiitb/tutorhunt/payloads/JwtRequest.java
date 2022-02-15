@@ -4,27 +4,30 @@ import javax.validation.constraints.NotBlank;
 
 
 public class JwtRequest {
+
     @NotBlank
-    private String email;
+    private String Email;
+
     @NotBlank
     private String password;
+
     @NotBlank
     private String username;
+
+    @NotBlank
     private String name;
 
-    public JwtRequest(@NotBlank String email, @NotBlank String password, @NotBlank String username, String name) {
-        this.email = email;
-        this.password = password;
-        this.username = username;
-        this.name = name;
-    }
+    @NotBlank
+    private String role;
+
+
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
     public void setEmail(String Email) {
-        this.email = email;
+        this.Email = Email;
     }
 
     public String getPassword() {
@@ -46,4 +49,8 @@ public class JwtRequest {
     public String getName() { return name; }
 
     public void setName(String name) { this.name = name; }
+
+    public String getRole() { return role; }
+
+    public void setRole(String role) { this.role = role; }
 }
